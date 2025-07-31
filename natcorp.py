@@ -55,6 +55,7 @@ nova_url = ':'.join(partes)
 driver.get(nova_url)
 
 time.sleep(2)
+# .//h3 - h3 dentro de li, independente se estiver dentro de uma div
 li_recibo_pagamento = driver.find_element(By.XPATH, "//li[.//h3[contains(text(), 'Recibo de Pagamento')]]")
 li_recibo_pagamento.click()
 time.sleep(2)
