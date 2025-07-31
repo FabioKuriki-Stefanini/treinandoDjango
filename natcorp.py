@@ -36,7 +36,7 @@ driver, pasta_download = setup_driver_para_download()
 driver.get("https://www.natcorpbr.com.br/apex/hcm/f?p=310:")
 
 # Login
-
+time.sleep(2)
 botao = driver.find_element(By.TAG_NAME, 'button')
 usuario = driver.find_element(By.ID, "P900_USUARIO")
 senha = driver.find_element(By.ID, "P900_SENHA")
@@ -55,8 +55,8 @@ nova_url = ':'.join(partes)
 driver.get(nova_url)
 
 time.sleep(2)
-li = driver.find_elements(By.TAG_NAME, 'li')
-li[8].click()
+li_recibo_pagamento = driver.find_element(By.XPATH, "//li[.//h3[contains(text(), 'Recibo de Pagamento')]]")
+li_recibo_pagamento.click()
 time.sleep(2)
 iframe = driver.find_element(By.XPATH, "//iframe[@title='Recibo de Pagamento']")
 
@@ -65,12 +65,12 @@ iframe = driver.find_element(By.XPATH, "//iframe[@title='Recibo de Pagamento']")
 driver.switch_to.frame(iframe)
 
 select_element = driver.find_element(By.ID, "P55_DATA_REF")
-select = Select(select_element)
-select.select_by_index(1)
+select_mes = Select(select_element)
+select_mes.select_by_index(1)
 
 # Clicar no botão
-bot = driver.find_element(By.ID, 'B122641727466359905239')
-bot.click()
+botao_gerar_relatorio = driver.find_element(By.XPATH, "//button[span[contains(text(), 'Gerar Relatório')]]")
+botao_gerar_relatorio.click()
 time.sleep(2)
 
 driver.quit()
